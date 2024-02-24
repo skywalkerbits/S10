@@ -4,7 +4,7 @@ from app import create_app
 
 @pytest.fixture()
 def app():
-    app = create_app('development')
+    app = create_app("development")
     yield app
 
 
@@ -14,4 +14,4 @@ def client(app):
 
 
 def test_get_all_data(client):
-    assert len(client.get('/data').json) == 1
+    assert len(client.get("/data").json) == 1
