@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  app:
+    container_name: proyecto_final_app
+    build:
+      context: .
+      dockerfile: ./Dockerfile.development
+    restart: always
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+    environment:
+      FLASK_ENV: development
+      DATABASE_URI: "postgresql://myuser:mypassword@db:5432/mydatabase"
+    volumes:
+      - ./:/app
+      - ./app:/app/app
+  db:
+    container_name: proyecto_final_db
+    image: postgres:15
+    environment:
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_USER: myuser
+      POSTGRES_DB: mydatabase
+    volumes:
+      - db_postgres:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  db_postgres:
