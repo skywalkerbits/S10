@@ -46,7 +46,6 @@ pipeline {
         stage('Subir Imagen Docker') {
             steps {
                 script {
-                   //nombre de la rama desde GIT_BRANCH, despues limpiamos el prefijo 'origin/'
                     def branchName = env.GIT_BRANCH?.replaceAll('origin/', '').trim()
                     echo "La rama actual es: ${branchName}"
 
